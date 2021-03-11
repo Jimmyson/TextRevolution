@@ -1,16 +1,17 @@
+//ANIMATION SETUP
+  // User modifible variables
+var word_loop = effect("Word Loop Occurances")("Slider").value; // (int) Times animation is looped
+var pause = effect("Paused Frames")("Slider").value; // (int) Frames the animation is paused for
+var reverse = effect("Reverse Direction")("Checkbox").value; // (boolean) Characters shift forwards or backwards
+var space_hold = effect("Process Spaces")("Checkbox").value; // (boolean) Hold the space character positions
+
 //READS INPUTED TEXT
-var string = text.sourceText;
+var string = text.sourceText; // Text of the layer
 var lng_size = string.length;
 var lng_char = string.split("");
 
-//ANIMATION SETUP
-var word_loop = effect("Word Loop Occurances")("Slider").value; //Times animation is looped
-var pause = effect("Paused Frames")("Slider").value; //Frames the animation is paused for
-var reverse = effect("Reverse Direction")("Checkbox").value;
-var space_hold = effect("Process Spaces")("Checkbox").value;
-var layerTime = timeToFrames(time - inPoint);
-
-var output = "";
+var layerTime = timeToFrames(time - inPoint); // Find the layer startpoint in the composition
+var output = ""; // Final string value to be rendered
 var offset = 0;
 
 //Check Space Process
@@ -42,6 +43,7 @@ if (space_hold == true) { //SHORT STRING PROCESS
 //OUTPUT TO LAYER
 output
 
+// Calculate the new position of the character in the array
 function offsetValue(wordLoopOccur, pause, layerTime, stringSize, rev) {
     _loopLength = stringSize * wordLoopOccur;
     _loopFrame = layerTime % (_loopLength + pause);
